@@ -6,7 +6,7 @@
       xmlns:ui = "http://java.sun.com/jsf/facelets"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Movies search</title>
     </h:head>
     <h:body>
          <h:form id="SearchForm">
@@ -25,7 +25,17 @@
              <h:commandButton value="#{bundle.star}"
                               rendered="#{searchController.movie.title != null}"
                              action="#{searchController.addMovie}"/>
-            <div/>
+            <div/>  </h:form>
+        
+        <h:form id="nav">
+            <h:commandButton value="top3"
+                             action="top3"/>
+            <h:commandButton value="search movies"
+                             action="movie"/>
+            <h:commandButton value="My Movies"
+                             action="user"/>
+        </h:form>
+        
             <h:outputText styleClass="formLabel"
                           value="#{searchController.movie.title}"/>
             <h:outputText styleClass="formLabel"
@@ -37,7 +47,7 @@
             <h:outputText styleClass="formLabel"
                           value="#{searchController.movie.desc}"/>
             <h:graphicImage  url="#{searchController.movie.posterLink}"/>
-            </h:form>
+          
         
         
              <h:panelGrid >

@@ -19,9 +19,7 @@ public class User implements Serializable {
      private static final long serialVersionUID
             = 2L;
     
-    String name;
-    
-    Set<Movie> movies; 
+    String name; 
     
        public String getName() {
         System.out.println("getName in User: " + name); 

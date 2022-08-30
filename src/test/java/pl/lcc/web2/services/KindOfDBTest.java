@@ -16,25 +16,29 @@ import pl.lcc.web2.views.Movie;
  */
 public class KindOfDBTest {
 
-    private Movie createMovie(String title, String year) {
+    private Movie createMovie(String title, String year, String link) {
         var m = new Movie();
         m.setTitle(title);
         m.setYear(year);
+        m.setPosterLink(link);
         return m;
     }
 
     @Test
     public void testTakeTop() {
         var db = new KindOfDB();
-        var m1 = createMovie("King", "1444");
-        var m2 = createMovie("King", "1956");
-        var m3 = createMovie("Kong", "1245");
+        var m1 = createMovie("Star Trek", "2009", "https://m.media-amazon.com/images/M/MV5BMjE5NDQ5OTE4Ml5BMl5BanBnXkFtZTcwOTE3NDIzMw@@._V1_SX300.jpg");
+        var m2 = createMovie("Star Trek: The Motion Picture", "1979", "https://m.media-amazon.com/images/M/MV5BNjk1ZjAyZjktZTY4YS00NDY3LWIwMzktMjZiNGIzODFiZDVmXkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_SX300.jpg");
+        var m3 = createMovie("Star Trek: First Contact", "1996", "https://m.media-amazon.com/images/M/MV5BYzMzZmE3MTItODYzYy00YWI5LWFkNWMtZTY5NmU2MDkxYWI1XkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_SX300.jpg");
+        db.createUser("zajac", "poziomka");
+        db.createUser("lis", "witalis");
+        db.createUser("pies", "puc");
         db.addMovie("lis", m1).addMovie("lis", m2).addMovie("lis", m3);
         db.addMovie("zajac", m1).addMovie("zajac", m2);
         db.addMovie("pies", m1);
         var result = db.getTop(2);
-        assertEquals(m1, result.get(0));
-        assertEquals(m2, result.get(1));
+        assertTrue(result.contains(m1));
+        assertTrue( result.contains(m2));
 
     }
 

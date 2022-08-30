@@ -29,9 +29,6 @@ public class KindOfDB implements  Serializable {
     public KindOfDB() {
         movieDB = new HashMap<>();
         users = new HashMap<>();
-        createxUser("zajac", "poziomka");
-        createxUser("lis", "witalis");
-        createxUser("pies", "puc");
     }
 
     public Set<Movie> getMovies(String user) {
@@ -53,26 +50,17 @@ public class KindOfDB implements  Serializable {
         }
 
     }
-    
-     private KindOfDB createxUser(String user, String password) {
-        if (users.get(user) != null) {
-            throw new IllegalArgumentException("user already exist");
-        } else {
-            users.put(user, password);
-            movieDB.put(user, new HashSet<>());
-            return this;
-        }
-    }
      
      public String count(String user){
         return String.valueOf(movieDB.get(user).size());
      }
 
     public boolean checkUser(String user, String password) {
+        System.out.println("Pax: " + password + " user: " + user);
         return password.equals(users.get(user));
     }
     
-    public List<Movie> getTop(int n){
+    public Set<Movie> getTop(int n){
         return movieDB.values().stream()
                 .flatMap(s-> s.stream())
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
@@ -80,6 +68,7 @@ public class KindOfDB implements  Serializable {
                 .sorted((e1, e2) -> -1 * Long.compare(e1.getValue(), e2.getValue()))
                 .limit(n)
                 .map(entry -> entry.getKey())
-                .toList();
+                .collect(Collectors.toSet());
+               
     }
 }
