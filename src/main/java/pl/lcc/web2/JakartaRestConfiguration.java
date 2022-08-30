@@ -11,3 +11,4 @@ import jakarta.ws.rs.core.Application;
 public class JakartaRestConfiguration extends Application {
     
 }
+///https://jsf.zeef.com/bauke.scholtz
