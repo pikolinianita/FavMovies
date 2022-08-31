@@ -1,0 +1,27 @@
+1) <ui:cdecorate> <ui:component> wtf
+2) logout
+3) JPA
+4) wyglad
+
+
+Data: Eclipse GlassFish 6.2.5 (build 6.x-b66-g0159b68 2022-02-12T17:39:59+0000)
+NetBeans 14 
+
+
+resources
+
+1) https://eclipse-ee4j.github.io/jakartaee-tutorial/#using-scopes - documentation
+2) https://netbeans.apache.org/kb/docs/web/jsf20-intro.html - including intro to templates
+3) https://github.com/Apress/beginning-jakarta-ee
+4) libgen.is Library Genesis
+5) https://www.digitalocean.com/community/tutorials/java-servlet-filter-example-tutorial - filters
+6) https://faces.liferay.dev/jsf-showcase/-/jsf-tag/ui/decorate/general
+7) https://stackoverflow.com/questions/4994458/how-can-i-pass-selected-row-to-commandlink-inside-datatable-or-uirepeat
+8) https://docs.jboss.org/weld/reference/latest/en-US/html/scopescontexts.html#_built_in_scopes
+9) https://www.thecodeteacher.com/question/238462/Saving-data-to-session-in-JSF
+10 https://thecodeteacher.com/question/15514/How-to-include-another-XHTML-in-XHTML-using-JSF-2.0-Facelets?
+11 https://thecodeteacher.com/question/12562/performance---Why-JSF-calls-getters-multiple-times
+12 https://stackoverflow.com/questions/12516349/how-control-access-and-rights-in-jsf
+13 https://stackoverflow.com/questions/8480100/how-implement-a-login-filter-in-jsf
+14 https://stackoverflow.com/questions/2206911/performing-user-authentication-in-java-ee-jsf-using-j-security-check/2207147#2207147
+15 https://stackoverflow.com/questions/9965708/how-to-handle-authentication-authorization-with-users-in-a-database
