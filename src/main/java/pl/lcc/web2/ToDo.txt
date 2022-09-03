@@ -25,3 +25,32 @@ resources
 13 https://stackoverflow.com/questions/8480100/how-implement-a-login-filter-in-jsf
 14 https://stackoverflow.com/questions/2206911/performing-user-authentication-in-java-ee-jsf-using-j-security-check/2207147#2207147
 15 https://stackoverflow.com/questions/9965708/how-to-handle-authentication-authorization-with-users-in-a-database
+
+
+hibernate and all
+https://thorben-janssen.com/jpa-persistence-xml/
+https://hibernate.org/orm/books/
+https://vladmihalcea.com/jpa-persistence-xml/
+https://stackoverflow.com/questions/3111992/difference-between-configuring-data-source-in-persistence-xml-and-in-spring-conf
+https://docs.oracle.com/cd/E16439_01/doc.1013/e13981/cfgdepds005.htm#CJAHIFGI
+https://docs.oracle.com/cd/E16439_01/doc.1013/e13981/servdats002.htm#CHDGJCEA
+https://docs.oracle.com/cd/E16439_01/doc.1013/e13981/undejdev007.htm#CHDGJAHC
+
+https://jakarta.ee/specifications/platform/8/apidocs/javax/annotation/sql/datasourcedefinition
+
+https://blog.payara.fish/getting-started-with-jakarta-ee-9-jakarta-persistence-api-jpa
+https://tomee.apache.org/latest/examples/xa-datasource.html
+
+https://glassfish.org/docs/5.1.0/application-development-guide/jpa.html - for Derby
+
+https://stackoverflow.com/questions/51330870/how-to-use-h2-database-with-jpa-on-websphere-liberty h2 with some strange server
+https://groups.google.com/g/h2-database/c/F_liUgK552k
+http://www.h2database.com/html/tutorial.html#using_toplink
+
+!!! config ds
+https://stackoverflow.com/questions/10033181/cant-create-connection-pool-and-datasource-in-glassfish-for-h2-database
+https://stackoverflow.com/questions/12698955/arquillian-glassfish-h2database failure
+https://stackoverflow.com/questions/10663126/connecting-to-h2-database-with-glassfish
+
+!!! config persisrence
+https://blog.jetbrains.com/idea/2021/02/creating-a-simple-jakarta-persistence-application/
