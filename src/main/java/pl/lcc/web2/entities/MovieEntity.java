@@ -13,10 +13,10 @@ import jakarta.persistence.ManyToOne;
  */
 public class MovieEntity {
     @Id
-    long id;
+    Long id;
     
-    @ManyToOne
-    UserEntity user;
+    //@ManyToOne
+   // UserEntity user;
     
     String year;
     String title;
