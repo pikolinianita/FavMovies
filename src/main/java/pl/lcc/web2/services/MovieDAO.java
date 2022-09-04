@@ -4,10 +4,25 @@
  */
 package pl.lcc.web2.services;
 
+import java.util.Set;
+import pl.lcc.web2.views.Movie;
+
 /**
  *
  * @author Teresa
  */
-interface MovieDAO {
+public interface MovieDAO {
+
+    KindOfDB addMovie(String user, Movie m);
+
+    boolean checkUser(String user, String password);
+
+    String count(String user);
+
+    KindOfDB createUser(String user, String password);
+
+    Set<Movie> getMovies(String user);
+
+    Set<Movie> getTop(int n);
     
 }

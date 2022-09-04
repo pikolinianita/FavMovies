@@ -4,12 +4,14 @@
  */
 package pl.lcc.web2.views;
 
+import Qualifiers.InMemory;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import java.io.Serializable;
 import pl.lcc.web2.services.KindOfDB;
+import pl.lcc.web2.services.MovieDAO;
 
 /**
  *
@@ -23,8 +25,8 @@ public class LoginController implements Serializable {
     
     String password;
 
-    @Inject
-    KindOfDB db;
+    @Inject       
+    MovieDAO db;
 
     public String find() {
         

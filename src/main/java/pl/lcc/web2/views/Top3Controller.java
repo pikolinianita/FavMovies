@@ -4,12 +4,14 @@
  */
 package pl.lcc.web2.views;
 
+import Qualifiers.InMemory;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import java.util.Set;
 import pl.lcc.web2.services.KindOfDB;
+import pl.lcc.web2.services.MovieDAO;
 
 /**
  *
@@ -18,8 +20,8 @@ import pl.lcc.web2.services.KindOfDB;
 @Named
 public class Top3Controller {
    
-    @Inject
-    KindOfDB db;
+    @Inject     
+    MovieDAO db;
     
     Set<Movie> movies;
 

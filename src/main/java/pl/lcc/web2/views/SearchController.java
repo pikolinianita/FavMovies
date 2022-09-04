@@ -5,12 +5,14 @@
 package pl.lcc.web2.views;
 
 
+import Qualifiers.InMemory;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.inject.Scope;
 import java.io.Serializable;
 import pl.lcc.web2.services.KindOfDB;
+import pl.lcc.web2.services.MovieDAO;
 import pl.lcc.web2.services.OmdbService;
 
 /**
@@ -24,8 +26,8 @@ public class SearchController implements Serializable{
     @Inject
     OmdbService omdbService;
     
-    @Inject
-    KindOfDB db;
+    @Inject     
+    MovieDAO db;
     
     String nameSearch;
     String yearSearch;

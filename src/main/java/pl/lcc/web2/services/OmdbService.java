@@ -24,10 +24,9 @@ import pl.lcc.web2.views.Movie;
 public class OmdbService implements Serializable{
 
     public Movie findMovie(String title, String year) {
-        System.out.println("going to call" + title + " : " + year);
+        System.out.println("going to call for" + title + " : " + year);
         var targetString = constructRequestString(title, year);
-        
-        System.out.println("client bbuilt");
+
         Client client = ClientBuilder.newClient();
         WebTarget myResource = client.target(targetString);
         var response = myResource
