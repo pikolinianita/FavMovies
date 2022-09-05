@@ -13,13 +13,13 @@ import pl.lcc.web2.views.Movie;
  */
 public interface MovieDAO {
 
-    KindOfDB addMovie(String user, Movie m);
+    MovieDAO addMovie(String user, Movie m);
 
     boolean checkUser(String user, String password);
 
     String count(String user);
 
-    KindOfDB createUser(String user, String password);
+    MovieDAO createUser(String user, String password);
 
     Set<Movie> getMovies(String user);
 

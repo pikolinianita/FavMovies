@@ -4,13 +4,12 @@
  */
 package pl.lcc.web2;
 
-import Qualifiers.InMemory;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
-import pl.lcc.web2.services.KindOfDB;
 import pl.lcc.web2.services.MovieDAO;
+import pl.lcc.web2.services.PreferredDB;
 import pl.lcc.web2.views.Movie;
 
 /**
@@ -21,7 +20,7 @@ import pl.lcc.web2.views.Movie;
 public class FakeDataInitListener implements ServletContextListener{
 
     @Inject
-       
+    @PreferredDB   
     MovieDAO db;
     
     @Override

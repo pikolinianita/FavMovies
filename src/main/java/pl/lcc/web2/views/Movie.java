@@ -41,6 +41,20 @@ public class Movie implements Serializable{
     @SerializedName(value="Poster")
     String posterLink;
 
+    public Movie() {
+    }
+
+    public Movie(String title, String year, String desc, String genre, String director, String posterLink) {
+        this.title = title;
+        this.year = year;
+        this.desc = desc;
+        this.genre = genre;
+        this.director = director;
+        this.posterLink = posterLink;
+    }
+
+    
+    
     public String getTitle() {
         return title;
     }

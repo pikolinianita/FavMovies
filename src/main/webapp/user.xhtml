@@ -9,7 +9,6 @@
         <title>User view</title>
     </h:head>
     <h:body>
-        <p> Here will be dragons </p>
         <p> Hi, #{userController.userName}, here are your movies </p>
         
         <h:form id="nav">
@@ -23,15 +22,37 @@
         
         <h:dataTable value = "#{userController.movies}" var = "m"  >  
 
-            <h:column>       
+            <h:column pt:style="width:100px;text-align:center;">       
                 <f:facet name = "header">Title</f:facet>    				
                     #{m.title}
             </h:column>
 
-            <h:column>
+            <h:column pt:style="width:100px;text-align:center;">
                 <f:facet name = "header">Year</f:facet>
                     #{m.year}
             </h:column>
+            
+             <h:column pt:style="width:100px;text-align:center;">
+                <f:facet name = "header">Director</f:facet>
+                    #{m.director}
+            </h:column>
+            
+            <h:column pt:style="width:100px;text-align:center;">
+                <f:facet name = "header">Genre</f:facet>
+                    #{m.genre}
+            </h:column>
+            
+            <h:column pt:style="width:200px;text-align:center;">
+                <f:facet name = "header">Short Plot</f:facet>
+                    #{m.desc}
+            </h:column>
+            
+            
+            <h:column pt:style="width:50px;text-align:center;">
+                <f:facet name = "header">Poster</f:facet>
+                     <h:graphicImage height="200px"  url="#{m.posterLink}"/>
+            </h:column>
+           
         </h:dataTable>
     </h:body>
 </html>
