@@ -5,6 +5,7 @@
 package pl.lcc.web2.views;
 
 
+import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -37,18 +38,16 @@ public class SearchController implements Serializable{
             = 2L;
     
     public SearchController() {
-        System.out.println("search contructor");
         movie = new Movie();
     }
     
     public String addMovie(){
-        db.addMovie("lis", movie);
-        System.out.println(db.count("lis"));
+        var currentUser = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+        db.addMovie(currentUser, movie);
         return null;
     }
 
     public String find(){
-        System.out.println("movie search");
        movie = omdbService.findMovie(nameSearch, yearSearch);
         return null;
     } 

@@ -33,16 +33,28 @@ public class LoginController implements Serializable {
     public String find() {
         
         if (db.checkUser(user, password)) {
-            FacesContext.getCurrentInstance()
-                    .getExternalContext()
-                    .getSessionMap()
-                    .put("user", user);
+            initializeSession();
 
             return "user.xhtml?faces-redirect=true";
         } else {
             return null;
         }
 
+    }
+
+ 
+    
+    public String createUser(){
+        db.createUser(user, password);
+        initializeSession();
+        return "user.xhtml?faces-redirect=true";
+    }   
+    
+    private void initializeSession() {
+        FacesContext.getCurrentInstance()
+                .getExternalContext()
+                .getSessionMap()
+                .put("user", user);
     }
 
     public String getUser() {

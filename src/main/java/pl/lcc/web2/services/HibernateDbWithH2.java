@@ -162,9 +162,11 @@ public class HibernateDbWithH2 implements MovieDAO, Serializable {
 
     @Override
     public Set<Movie> getMovies(String user) {
+        System.out.println("GetMovies For: " + user);
         try ( Session session = factory.openSession()) {
             Transaction tx = session.beginTransaction();
             var userEntity = findUserByName(session, user);
+            System.out.println("Movies: " + userEntity.getMovies());
             var result = userEntity.getMovies().stream().map(MovieEntity::toMovie).collect(Collectors.toSet());
             tx.commit();
             return result;
@@ -180,7 +182,9 @@ public class HibernateDbWithH2 implements MovieDAO, Serializable {
             var query = session
                     .createQuery(hql, MovieEntity.class)
                     .setMaxResults(n);
-            var result = query.list().stream().map(MovieEntity::toMovie).collect(Collectors.toSet());
+            var resultList = query.list();
+            System.out.println("Get Top: " + resultList);
+            var result = resultList.stream().map(MovieEntity::toMovie).collect(Collectors.toSet());
 
             tx.commit();
             System.out.println(result);

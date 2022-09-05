@@ -9,6 +9,8 @@
         <title>Movies search</title>
     </h:head>
     <h:body>
+        
+        
         <h:form id="SearchForm">
             <h:outputText styleClass="formLabel"
                           value="#{bundle.label_EnterTitle}"/>
@@ -62,10 +64,6 @@
         </table>
 
         <h:panelGrid >
-            <h:outputText styleClass="formLabel"
-                          value="#{accounting.name}"/>
-            <h:outputText styleClass="formLabel"
-                          value="#{accounting.date}"/>
             <h:outputText styleClass="formLabel"
                           value="#{ session.creationTime }"/>
             <h:outputText styleClass="formLabel"
