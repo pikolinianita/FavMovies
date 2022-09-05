@@ -5,7 +5,6 @@
 package pl.lcc.web2.views;
 
 import com.google.gson.annotations.SerializedName;
-import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 import java.io.Serializable;
 import java.util.Objects;

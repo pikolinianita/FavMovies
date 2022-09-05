@@ -28,8 +28,6 @@ public class Top3Controller {
     @PostConstruct
     public void init(){
         movies = db.getTop(3);
-        System.out.println("Movies: ");
-        System.out.println(movies);
     } 
 
     public Set<Movie> getMovies() {

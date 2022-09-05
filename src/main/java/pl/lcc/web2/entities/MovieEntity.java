@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -20,7 +21,7 @@ import pl.lcc.web2.views.Movie;
  * @author Teresa
  */
 @Entity
-public class MovieEntity {
+public class MovieEntity implements Serializable{
     
     @Id
     @GeneratedValue

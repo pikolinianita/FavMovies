@@ -8,14 +8,9 @@ import pl.lcc.web2.services.annotations.PreferredDB;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.ejb.Singleton;
-import jakarta.interceptor.AroundInvoke;
-import jakarta.interceptor.InvocationContext;
 import java.io.Serializable;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
-import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.boot.MetadataSources;
@@ -51,8 +46,6 @@ public class HibernateDbWithH2 implements MovieDAO, Serializable {
             System.out.println("Error in buildind session factory!!!!");
 
         }
-        System.out.println("--- My Hibernate Post Construct -- going to Exit");
-
     }
 
     @PreDestroy
@@ -105,7 +98,6 @@ public class HibernateDbWithH2 implements MovieDAO, Serializable {
             var query = session.createQuery(hql, Long.class);
             query.setParameter("user_name", user);
             var result = query.uniqueResultOptional().orElse(Long.MIN_VALUE);
-            System.out.println(result);
 
             tx.commit();
             return String.valueOf(result);
@@ -138,14 +130,13 @@ public class HibernateDbWithH2 implements MovieDAO, Serializable {
 
     @Override
     public Set<Movie> getMovies(String user) {
-        System.out.println("GetMovies For: " + user);
+       
         try ( Session session = factory.openSession()) {
             Transaction tx = session.beginTransaction();
-            
-            var userEntity = findUserByName(session, user);
-            System.out.println("Movies: " + userEntity.getMovies());
+
+            var userEntity = findUserByName(session, user);           
             var result = userEntity.getMovies().stream().map(MovieEntity::toMovie).collect(Collectors.toSet());
-            
+
             tx.commit();
             return result;
         }
@@ -160,19 +151,17 @@ public class HibernateDbWithH2 implements MovieDAO, Serializable {
             var query = session
                     .createQuery(hql, MovieEntity.class)
                     .setMaxResults(n);
-            var resultList = query.list();
-            System.out.println("Get Top: " + resultList);
+            var resultList = query.list();            
             var result = resultList.stream().map(MovieEntity::toMovie).collect(Collectors.toSet());
 
-            tx.commit();
-            System.out.println(result);
+            tx.commit();            
             return result;
         }
     }
 
     private UserEntity findUserByName(final Session session, String user) {
-        var userEntity = session.bySimpleNaturalId(UserEntity.class).load(user);
-        return userEntity;
+         return session.bySimpleNaturalId(UserEntity.class).load(user);
+     
     }
 
     private MovieEntity findMovieByMovie(final Session session, Movie m) {

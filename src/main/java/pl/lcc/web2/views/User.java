@@ -7,7 +7,6 @@ package pl.lcc.web2.views;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 import java.io.Serializable;
-import java.util.Set;
 
 /**
  *
@@ -22,12 +21,10 @@ public class User implements Serializable {
     String name; 
     
        public String getName() {
-        System.out.println("getName in User: " + name); 
         return name;
     }
 
     public void setName(String name) {
-        System.out.println("setName in User"); 
         this.name = name;
     }
 }

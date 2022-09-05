@@ -19,24 +19,20 @@ import java.io.IOException;
  *
  * @author Teresa
  */
-//https://www.digitalocean.com/community/tutorials/java-servlet-filter-example-tutorial
+
 @WebFilter("/AuthenticationFilter")
 public class AuthFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         Filter.super.init(filterConfig);
-        System.out.println("Filter Started");
     }
 
     @Override
     public void doFilter(ServletRequest sr, ServletResponse sr1, FilterChain fc) throws IOException, ServletException {
-        System.out.println("Filter Filtering");
 
-        //((HttpServletRequest) sr).getSession().getAttributeNames().asIterator().forEachRemaining(System.out::println);
-        var userLogged = !(((HttpServletRequest) sr).getSession().getAttribute("user") == null);
-        System.out.println(((HttpServletRequest) sr).getRequestURI());
-        var isLoginUri = ((HttpServletRequest) sr).getRequestURI().endsWith("login.xhtml");
+        boolean userLogged = (((HttpServletRequest) sr).getSession().getAttribute("user") != null);
+        boolean isLoginUri = ((HttpServletRequest) sr).getRequestURI().endsWith("login.xhtml");
         if ( userLogged || isLoginUri){
              fc.doFilter(sr, sr1);
         } else {
@@ -46,7 +42,6 @@ public class AuthFilter implements Filter {
 
     @Override
     public void destroy() {
-        System.out.println("Filter Will  Stop");
         Filter.super.destroy();
     }
 

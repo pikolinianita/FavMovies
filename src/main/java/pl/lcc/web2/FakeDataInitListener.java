@@ -26,7 +26,6 @@ public class FakeDataInitListener implements ServletContextListener{
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         ServletContextListener.super.contextInitialized(sce);
-        System.out.println("Context Initiaized Listener");
         db.createUser("zajac", "poziomka");
         db.createUser("lis", "witalis");
         db.createUser("pies", "puc");

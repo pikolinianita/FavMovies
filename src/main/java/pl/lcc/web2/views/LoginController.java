@@ -4,7 +4,6 @@
  */
 package pl.lcc.web2.views;
 
-import jakarta.annotation.PostConstruct;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
