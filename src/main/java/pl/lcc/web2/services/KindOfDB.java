@@ -4,6 +4,7 @@
  */
 package pl.lcc.web2.services;
 
+import pl.lcc.web2.services.annotations.NotPreferred;
 import jakarta.ejb.Singleton;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -12,6 +13,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import pl.lcc.web2.services.annotations.PreferredDB;
 import pl.lcc.web2.views.Movie;
 
 /**
@@ -60,7 +62,6 @@ public class KindOfDB implements MovieDAO, Serializable {
 
     @Override
     public boolean checkUser(String user, String password) {
-        System.out.println("Pax: " + password + " user: " + user);
         return password.equals(users.get(user));
     }
     

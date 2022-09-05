@@ -13,6 +13,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import org.hibernate.annotations.NaturalId;
 
@@ -49,7 +50,7 @@ public class UserEntity implements Serializable{
     }
     
     public UserEntity(){
-        System.out.println("For Hibernate User Entity");
+        //for hibernate
     }
 
     public Long getId() {
@@ -93,6 +94,28 @@ public class UserEntity implements Serializable{
     @Override
     public String toString() {
         return "UserEntity{" + "id=" + id + ", name=" + name + ", password=" + password + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 83 * hash + Objects.hashCode(this.name);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final UserEntity other = (UserEntity) obj;
+        return Objects.equals(this.name, other.name);
     }
     
     

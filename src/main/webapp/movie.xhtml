@@ -9,19 +9,21 @@
         <title>Movies search</title>
     </h:head>
     <h:body>
-        
-        
+
+
         <h:form id="SearchForm">
             <h:outputText styleClass="formLabel"
                           value="#{bundle.label_EnterTitle}"/>
             <h:inputText id="title"
                          value="#{searchController.nameSearch}"/>
             <div/>
+            
             <h:outputText styleClass="formLabel"
                           value="#{bundle.label_EnterYear}"/>
             <h:inputText id="year"
                          value="#{searchController.yearSearch}"/>
             <div/>
+            
             <h:commandButton value="#{bundle.search_submit}"
                              action="#{searchController.find}"/>
             <h:commandButton value="#{bundle.star}"
@@ -62,13 +64,6 @@
                 </td>
             </tr>   
         </table>
-
-        <h:panelGrid >
-            <h:outputText styleClass="formLabel"
-                          value="#{ session.creationTime }"/>
-            <h:outputText styleClass="formLabel"
-                          value="#{ session.lastAccessedTime }"/>
-        </h:panelGrid>
 
     </h:body>
 </html>

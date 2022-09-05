@@ -12,7 +12,7 @@ import jakarta.inject.Named;
 import java.io.Serializable;
 import pl.lcc.web2.services.MovieDAO;
 import pl.lcc.web2.services.OmdbService;
-import pl.lcc.web2.services.PreferredDB;
+import pl.lcc.web2.services.annotations.PreferredDB;
 
 /**
  *

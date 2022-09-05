@@ -24,17 +24,14 @@ import pl.lcc.web2.views.Movie;
 public class OmdbService implements Serializable{
 
     public Movie findMovie(String title, String year) {
-        System.out.println("going to call for" + title + " : " + year);
         var targetString = constructRequestString(title, year);
-
+        
         Client client = ClientBuilder.newClient();
         WebTarget myResource = client.target(targetString);
         var response = myResource
                 .request(MediaType.APPLICATION_JSON)
                 .get(String.class);
-        System.out.println(response);
-       return toMovie(response);  
-       
+       return toMovie(response);    
     }
 
     private Movie toMovie(String response) throws JsonSyntaxException {

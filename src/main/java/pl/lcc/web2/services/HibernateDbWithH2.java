@@ -4,6 +4,7 @@
  */
 package pl.lcc.web2.services;
 
+import pl.lcc.web2.services.annotations.PreferredDB;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.ejb.Singleton;
@@ -41,14 +42,14 @@ public class HibernateDbWithH2 implements MovieDAO, Serializable {
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure()
                 .build();
-//
+
         try {
             factory = new MetadataSources(registry)
                     .buildMetadata()
                     .buildSessionFactory();
         } catch (Exception e) {
-            System.out.println("Error!!!!");
-            System.out.println(e.toString());
+            System.out.println("Error in buildind session factory!!!!");
+
         }
         System.out.println("--- My Hibernate Post Construct -- going to Exit");
 
@@ -60,26 +61,6 @@ public class HibernateDbWithH2 implements MovieDAO, Serializable {
         factory.close();
     }
 
-//    @AroundInvoke
-//    public Object transactionWrapper(InvocationContext invocationContext) throws Exception {
-//        System.out.println("entered Interceptor " + invocationContext.getMethod().toString());
-//        var session = factory.openSession();
-//        var tx = session.beginTransaction();
-//        try {
-//
-//            var result = invocationContext.proceed();
-//
-//            tx.commit();
-//            return result;
-//        } catch (Exception e) {
-//            tx.rollback();
-//            throw e;
-//        } finally {
-//            System.out.println("exiting interceptor");
-//            session.close();
-//        }
-//
-//    }
     @Override
     public MovieDAO addMovie(String user, Movie m) {
         try ( Session session = factory.openSession()) {
@@ -117,37 +98,25 @@ public class HibernateDbWithH2 implements MovieDAO, Serializable {
     @Override
     public String count(String user) {
 
-        long result;
-        var session = factory.openSession();
-        var tx = session.beginTransaction();
-        try {
-            var queryU = session.createQuery("Select count(U) from UserEntity U", Long.class);
-            var nUsers = queryU.uniqueResultOptional().orElse(Long.MIN_VALUE);
-            var queryM = session.createQuery("Select count(M) from MovieEntity M", Long.class);
-            var nMovies = queryM.uniqueResultOptional().orElse(Long.MIN_VALUE);
-            System.out.println("Users " + nUsers);
-            System.out.println("Movies " + nMovies);
+        try ( Session session = factory.openSession()) {
+            Transaction tx = session.beginTransaction();
+
             String hql = "select count(M) from MovieEntity M LEFT JOIN M.users users WHERE users.name = :user_name";
             var query = session.createQuery(hql, Long.class);
             query.setParameter("user_name", user);
-            result = query.uniqueResultOptional().orElse(Long.MIN_VALUE);
+            var result = query.uniqueResultOptional().orElse(Long.MIN_VALUE);
             System.out.println(result);
-            //   value = query.uniqueResultOptional().map(UserEntity::toString).orElse("NotFound");
-            tx.commit();
-        } catch (Exception e) {
-            tx.rollback();
-            throw e;
-        } finally {
 
-            session.close();
+            tx.commit();
+            return String.valueOf(result);
         }
 
-        return String.valueOf(result);
     }
 
     @Override
     public MovieDAO createUser(String user, String password) {
-        try ( Session session = factory.openSession()) {
+        Session session = factory.openSession();
+        try {
             Transaction tx = session.beginTransaction();
             if (session.bySimpleNaturalId(UserEntity.class).loadOptional(user).isEmpty()) {
                 var entity = new UserEntity(null, user, password);
@@ -156,6 +125,13 @@ public class HibernateDbWithH2 implements MovieDAO, Serializable {
                 System.out.println("User Already Exist!");
             }
             tx.commit();
+        } catch (Exception e) {
+            if (session.getTransaction().isActive()) {
+                session.getTransaction().rollback();
+            }
+            throw e;
+        } finally {
+            session.close();
         }
         return this;
     }
@@ -165,9 +141,11 @@ public class HibernateDbWithH2 implements MovieDAO, Serializable {
         System.out.println("GetMovies For: " + user);
         try ( Session session = factory.openSession()) {
             Transaction tx = session.beginTransaction();
+            
             var userEntity = findUserByName(session, user);
             System.out.println("Movies: " + userEntity.getMovies());
             var result = userEntity.getMovies().stream().map(MovieEntity::toMovie).collect(Collectors.toSet());
+            
             tx.commit();
             return result;
         }

@@ -9,7 +9,7 @@ import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
 import pl.lcc.web2.services.MovieDAO;
-import pl.lcc.web2.services.PreferredDB;
+import pl.lcc.web2.services.annotations.PreferredDB;
 import pl.lcc.web2.views.Movie;
 
 /**

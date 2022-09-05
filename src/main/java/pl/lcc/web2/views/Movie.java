@@ -128,7 +128,6 @@ public class Movie implements Serializable{
         }
         return Objects.equals(this.year, other.year);
     }
-
     
     
     @Override

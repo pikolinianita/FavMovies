@@ -10,7 +10,7 @@ import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import java.util.Set;
 import pl.lcc.web2.services.MovieDAO;
-import pl.lcc.web2.services.PreferredDB;
+import pl.lcc.web2.services.annotations.PreferredDB;
 
 /**
  *

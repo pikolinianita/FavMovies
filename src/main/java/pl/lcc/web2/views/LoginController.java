@@ -11,7 +11,7 @@ import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import java.io.Serializable;
 import pl.lcc.web2.services.MovieDAO;
-import pl.lcc.web2.services.PreferredDB;
+import pl.lcc.web2.services.annotations.PreferredDB;
 
 /**
  *
@@ -22,34 +22,29 @@ import pl.lcc.web2.services.PreferredDB;
 public class LoginController implements Serializable {
 
     String user;
-    
+
     String password;
 
     @Inject
     @PreferredDB
     MovieDAO db;
-    
 
     public String find() {
-        
+
         if (db.checkUser(user, password)) {
             initializeSession();
-
             return "user.xhtml?faces-redirect=true";
         } else {
             return null;
         }
-
     }
 
- 
-    
-    public String createUser(){
+    public String createUser() {
         db.createUser(user, password);
         initializeSession();
         return "user.xhtml?faces-redirect=true";
-    }   
-    
+    }
+
     private void initializeSession() {
         FacesContext.getCurrentInstance()
                 .getExternalContext()
@@ -58,22 +53,18 @@ public class LoginController implements Serializable {
     }
 
     public String getUser() {
-       // System.out.println("get user");
         return user;
     }
 
     public void setUser(String user) {
-      //  System.out.println("set user: " +  user);
         this.user = user;
     }
 
     public String getPassword() {
-    //    System.out.println("get password");
         return password;
     }
 
     public void setPassword(String password) {
-      //  System.out.println("set password: " + password);
         this.password = password;
     }
 }

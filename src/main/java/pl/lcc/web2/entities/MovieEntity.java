@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 import pl.lcc.web2.views.Movie;
@@ -49,7 +50,7 @@ public class MovieEntity {
     }
 
     public MovieEntity() {
-        System.out.println("Movie Entity for Hibernate");
+       //for Hibernate
     }
 
    public Movie toMovie(){
@@ -123,6 +124,32 @@ public class MovieEntity {
     @Override
     public String toString() {
         return "MovieEntity{" + "id=" + id + ", users=" + users.stream().map(u -> u.getName()).collect(Collectors.toList()) + ", year=" + year + ", title=" + title + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 83 * hash + Objects.hashCode(this.year);
+        hash = 83 * hash + Objects.hashCode(this.title);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final MovieEntity other = (MovieEntity) obj;
+        if (!Objects.equals(this.year, other.year)) {
+            return false;
+        }
+        return Objects.equals(this.title, other.title);
     }
     
   
